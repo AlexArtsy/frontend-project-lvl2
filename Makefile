@@ -4,8 +4,11 @@ install: #Эта команда полезна при первом клонир�
 gendiff: #запускаем пакет gendiff.js
 	node bin/gendiff.js
 
-publish: #
-	npm publish --dry-run
-
 lint: # запускаем линтер
 	npx eslint
+
+test:
+	npm test
+
+publish: #
+	npm publish --dry-run
