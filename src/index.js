@@ -67,12 +67,9 @@ const genDiff = (filePath1, filePath2) => {
     return `{${result.join('')}${lb}}`;
   };
 
-  //const obj1entryes = Object.entries(sortObjectKyes(getObjectfromPath(filePath1)));
-  //const obj2entryes = Object.entries(sortObjectKyes(getObjectfromPath(filePath2)));
   const obj1entryes = Object.entries(getObjectfromPath(filePath1));
   const obj2entryes = Object.entries(getObjectfromPath(filePath2));
 
-  //const result = checkDiff(obj1entryes, obj2entryes);
   const result = sortEntries(checkDiff(obj1entryes, obj2entryes));
   return transformToString(result);
 };

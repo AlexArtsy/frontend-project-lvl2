@@ -5,5 +5,5 @@
 
 <a href="https://codeclimate.com/github/AlexArtsy/frontend-project-lvl2/test_coverage"><img src="https://api.codeclimate.com/v1/badges/24b9f799ce5caa60d0bb/test_coverage" /></a>
 
-#Учебный проект от академии hexlet.io
-##Frontend - разработка
+# Учебный проект от академии hexlet.io
+## Frontend - разработка
