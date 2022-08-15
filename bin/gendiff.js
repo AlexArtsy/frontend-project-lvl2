@@ -20,6 +20,4 @@ program
 program.parse();
 
 const options = program.opts();
-//console.log('format type:', options.format);
 
-export default genDiff;
