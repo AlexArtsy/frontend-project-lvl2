@@ -50,7 +50,7 @@ const checkDiffInEntries = (entries1, entries2) => {
       if (value1 === value2) {
         return [...acc, [' ', key, value1]];
       }
-      return [...acc, ['-', key, value1], ['+', key, [value2]]];
+      return [...acc, ['-', key, value1], ['+', key, value2]];
     }
     return [...acc, ['-', key, value1]];
   }, []);
@@ -93,7 +93,7 @@ const genDiff = (filePath1, filePath2) => {
   const objEntries2 = transformObjToArray(obj2);
   const result = checkDiffInEntries(objEntries1, objEntries2);
 
-  return stylish(sortEntries(result));
+  return stylish(result);
 };
 
 export default genDiff;
