@@ -29,12 +29,18 @@ const isYaml = (filePath) => {
 
 const isJSON = (filePath) => path.extname(filePath) === '.json';
 
-const getElemWhenExist = (elem, source) => source.reduce((acc, item) => {
-  if (acc !== false) {
-    return acc;
+const getElemWhenExist = (elem, source) => {
+  //  непонятно почему, но если source содержит один элемент, возвращается не то
+  if (source.length === 1) {
+    return elem === source[1] ? source[2] : false;
   }
-  return item.includes(elem) ? item[2] : false;
-}, false);
+  return source.reduce((acc, item) => {
+    if (acc !== false) {
+      return acc;
+    }
+    return elem === item[1] ? item[2] : false;
+  }, false);
+};
 
 const checkDiffInEntries = (entries1, entries2) => {
   const file1CommonEntries = entries1.reduce((acc, [status, key, value1]) => {
@@ -55,13 +61,13 @@ const checkDiffInEntries = (entries1, entries2) => {
     return [...acc, ['-', key, value1]];
   }, []);
 
-  const file2CommonEntries = entries2.reduce((acc, [status, key, value2]) => {
-    if (!getElemWhenExist(key, entries1)) {
-      return [...acc, ['+', key, value2]];
+  const file2CommonEntries = entries2.reduce((acc, [status, key2, value2]) => {
+    if (!getElemWhenExist(key2, entries1)) {
+      return [...acc, ['+', key2, value2]];
     }
     return acc;
   }, file1CommonEntries);
-  return file2CommonEntries;
+  return sortEntries(file2CommonEntries);
 };
 
 const getObjectFromPath = (filePath) => {
@@ -78,9 +84,9 @@ const getObjectFromPath = (filePath) => {
 const transformObjToArray = (tree) => {
   const result = Object.entries(tree).map(([key, value]) => {
     if (_.isObject(value)) {
-      return [null, key, transformObjToArray(value)];
+      return [' ', key, transformObjToArray(value)];
     }
-    return [null, key, value];
+    return [' ', key, String(value)];
   });
 
   return result;
