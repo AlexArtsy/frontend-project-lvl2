@@ -1,6 +1,8 @@
 import fs from 'fs';
+import _ from 'lodash';
 import path from 'path';
 import parse from './parsers.js';
+import stylish from './stylish.js';
 
 const sortEntries = (arr) => {
   const ordered = arr.sort((item1, item2) => {
@@ -17,13 +19,6 @@ const sortEntries = (arr) => {
   return ordered;
 };
 
-const transformToString = (arr) => {
-  const lb = '\n';
-  const sp = '  ';
-  const result = arr.map(([sym, key, value]) => `${lb}${sp}${sym} ${key}: ${value}`);
-  return `{${result.join('')}${lb}}`;
-};
-
 const isYaml = (filePath) => {
   const ext = path.extname(filePath);
   if (ext === '.yml' || ext === '.yaml') {
@@ -34,34 +29,39 @@ const isYaml = (filePath) => {
 
 const isJSON = (filePath) => path.extname(filePath) === '.json';
 
+const getElemWhenExist = (elem, source) => source.reduce((acc, item) => {
+  if (acc !== false) {
+    return acc;
+  }
+  return item.includes(elem) ? item[2] : false;
+}, false);
+
 const checkDiffInEntries = (entries1, entries2) => {
-  const file1CommonEntries = entries1.reduce((acc, entry) => {
-    const [key1, value1] = entry;
-    let stat = false;
-    for (let i = 0; i < entries2.length; i += 1) {
-      const [key2, value2] = entries2[i];
-      if (key1 === key2 && value1 === value2) {
-        stat = true;
-        entries2.splice(i, 1);
-        acc.push([' ', key1, value1]);
+  const file1CommonEntries = entries1.reduce((acc, [status, key, value1]) => {
+    const value2 = getElemWhenExist(key, entries2);
+    //  проверяем, существует ли элемент в второй коллекции
+    if (value2) {
+      //  проверяем, объекты ли элемента из обеих коллекций
+      if (_.isObject(value1) && _.isObject(value2)) {
+        const newValue = checkDiffInEntries(value1, value2);
+        return [...acc, [' ', key, newValue]];
       }
-      if (key1 === key2 && value1 !== value2) {
-        stat = true;
-        acc.push(['-', key1, value1]);
-        acc.push(['+', key2, value2]);
-        entries2.splice(i, 1);
+      //  наконец-то производим сравнение
+      if (value1 === value2) {
+        return [...acc, [' ', key, value1]];
       }
+      return [...acc, ['-', key, value1], ['+', key, [value2]]];
     }
-    if (!stat) {
-      acc.push(['-', key1, value1]);
+    return [...acc, ['-', key, value1]];
+  }, []);
+
+  const file2CommonEntries = entries2.reduce((acc, [status, key, value2]) => {
+    if (!getElemWhenExist(key, entries1)) {
+      return [...acc, ['+', key, value2]];
     }
     return acc;
-  }, []);
-  const file2CommonEntries = entries2.map((entry) => {
-    const [key, value] = entry;
-    return ['+', key, value];
-  });
-  return file1CommonEntries.concat(file2CommonEntries);
+  }, file1CommonEntries);
+  return file2CommonEntries;
 };
 
 const getObjectFromPath = (filePath) => {
@@ -75,13 +75,25 @@ const getObjectFromPath = (filePath) => {
   }
   return result;
 };
+const transformObjToArray = (tree) => {
+  const result = Object.entries(tree).map(([key, value]) => {
+    if (_.isObject(value)) {
+      return [null, key, transformObjToArray(value)];
+    }
+    return [null, key, value];
+  });
+
+  return result;
+};
 
 const genDiff = (filePath1, filePath2) => {
-  const obj1entryes = Object.entries(getObjectFromPath(filePath1));
-  const obj2entryes = Object.entries(getObjectFromPath(filePath2));
+  const obj1 = getObjectFromPath(filePath1);
+  const obj2 = getObjectFromPath(filePath2);
+  const objEntries1 = transformObjToArray(obj1);
+  const objEntries2 = transformObjToArray(obj2);
+  const result = checkDiffInEntries(objEntries1, objEntries2);
 
-  const result = sortEntries(checkDiffInEntries(obj1entryes, obj2entryes));
-  return transformToString(result);
+  return stylish(sortEntries(result));
 };
 
 export default genDiff;
