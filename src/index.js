@@ -92,14 +92,14 @@ const transformObjToArray = (tree) => {
   return result;
 };
 
-const genDiff = (filePath1, filePath2) => {
+const genDiff = (filePath1, filePath2, formatter = stylish) => {
   const obj1 = getObjectFromPath(filePath1);
   const obj2 = getObjectFromPath(filePath2);
   const objEntries1 = transformObjToArray(obj1);
   const objEntries2 = transformObjToArray(obj2);
   const result = checkDiffInEntries(objEntries1, objEntries2);
 
-  return stylish(result);
+  return formatter(result);
 };
 
 export default genDiff;

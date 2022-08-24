@@ -37,3 +37,11 @@ test('test genDiff nested .json', () => {
   const result = readFile('result_nested_json');
   expect(result).toEqual(genDiff(path1, path2));
 });
+
+test('test genDiff nested .yml', () => {
+  const path1 = getPath('nested1.yml');
+  const path2 = getPath('nested2.yml');
+  const result = readFile('result_nested_json');
+  expect(result).toEqual(genDiff(path1, path2));
+});
+
