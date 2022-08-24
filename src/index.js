@@ -2,7 +2,7 @@ import fs from 'fs';
 import _ from 'lodash';
 import path from 'path';
 import parse from './parsers.js';
-import stylish from './stylish.js';
+import formatData from '../formatters/index.js';
 
 const sortEntries = (arr) => {
   const ordered = arr.sort((item1, item2) => {
@@ -92,14 +92,14 @@ const transformObjToArray = (tree) => {
   return result;
 };
 
-const genDiff = (filePath1, filePath2, formatter = stylish) => {
+const genDiff = (filePath1, filePath2, formatterStyle) => {
   const obj1 = getObjectFromPath(filePath1);
   const obj2 = getObjectFromPath(filePath2);
   const objEntries1 = transformObjToArray(obj1);
   const objEntries2 = transformObjToArray(obj2);
   const result = checkDiffInEntries(objEntries1, objEntries2);
 
-  return formatter(result);
+  return formatData(result, formatterStyle);
 };
 
 export default genDiff;
