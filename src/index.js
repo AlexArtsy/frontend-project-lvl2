@@ -3,6 +3,7 @@ import _ from 'lodash';
 import path from 'path';
 import parse from './parsers.js';
 import formatData from '../formatters/index.js';
+import { Console } from 'console';
 
 const sortEntries = (arr) => {
   const ordered = arr.sort((item1, item2) => {
@@ -43,27 +44,33 @@ const getElemWhenExist = (elem, source) => {
 };
 
 const checkDiffInEntries = (entries1, entries2) => {
-  const file1CommonEntries = entries1.reduce((acc, [status, key, value1]) => {
+  const file1CommonEntries = entries1.reduce((acc, [, key, value1, pathName1]) => {
+    let status1;
     const value2 = getElemWhenExist(key, entries2);
     //  проверяем, существует ли элемент в второй коллекции
     if (value2) {
       //  проверяем, объекты ли элемента из обеих коллекций
       if (_.isObject(value1) && _.isObject(value2)) {
         const newValue = checkDiffInEntries(value1, value2);
-        return [...acc, [' ', key, newValue]];
+        status1 = ['modified', value1, value2]; //  modified
+        return [...acc, [' ', key, newValue, pathName1, status1]];
       }
       //  наконец-то производим сравнение
       if (value1 === value2) {
-        return [...acc, [' ', key, value1]];
+        status1 = ['no modified'];
+        return [...acc, [' ', key, value1, pathName1, status1]];
       }
-      return [...acc, ['-', key, value1], ['+', key, value2]];
+      status1 = ['modified', value1, value2]; //  modified
+      return [...acc, ['-', key, value1, pathName1, status1], ['+', key, value2, pathName1, ['']]];
     }
-    return [...acc, ['-', key, value1]];
+    status1 = ['removed'];
+    return [...acc, ['-', key, value1, pathName1, status1]];
   }, []);
 
-  const file2CommonEntries = entries2.reduce((acc, [status, key2, value2]) => {
+  const file2CommonEntries = entries2.reduce((acc, [, key2, value2, pathName2]) => {
     if (!getElemWhenExist(key2, entries1)) {
-      return [...acc, ['+', key2, value2]];
+      const status2 = ['added'];
+      return [...acc, ['+', key2, value2, pathName2, status2]];
     }
     return acc;
   }, file1CommonEntries);
@@ -81,12 +88,13 @@ const getObjectFromPath = (filePath) => {
   }
   return result;
 };
-const transformObjToArray = (tree) => {
+const transformObjToArray = (tree, prop = '') => {
   const result = Object.entries(tree).map(([key, value]) => {
+    const pathName = (prop === '') ? `${key}` : `${prop}.${key}`;
     if (_.isObject(value)) {
-      return [' ', key, transformObjToArray(value)];
+      return [' ', key, transformObjToArray(value, pathName), pathName];
     }
-    return [' ', key, String(value)];
+    return [' ', key, String(value), pathName];
   });
 
   return result;
