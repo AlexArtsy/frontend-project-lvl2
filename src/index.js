@@ -3,7 +3,6 @@ import _ from 'lodash';
 import path from 'path';
 import parse from './parsers.js';
 import formatData from '../formatters/index.js';
-import { Console } from 'console';
 
 const sortEntries = (arr) => {
   const ordered = arr.sort((item1, item2) => {
@@ -31,16 +30,13 @@ const isYaml = (filePath) => {
 const isJSON = (filePath) => path.extname(filePath) === '.json';
 
 const getElemWhenExist = (elem, source) => {
-  //  непонятно почему, но если source содержит один элемент, возвращается не то
-  if (source.length === 1) {
-    return elem === source[1] ? source[2] : false;
-  }
-  return source.reduce((acc, item) => {
+  const result = source.reduce((acc, [, key, value, ,]) => {
     if (acc !== false) {
       return acc;
     }
-    return elem === item[1] ? item[2] : false;
+    return elem === key ? value : false;
   }, false);
+  return result;
 };
 
 const checkDiffInEntries = (entries1, entries2) => {
@@ -68,7 +64,8 @@ const checkDiffInEntries = (entries1, entries2) => {
   }, []);
 
   const file2CommonEntries = entries2.reduce((acc, [, key2, value2, pathName2]) => {
-    if (!getElemWhenExist(key2, entries1)) {
+    //  !('') приводится к true поэтому добавлена вторая проверка на равенство к ''
+    if (!getElemWhenExist(key2, entries1) && getElemWhenExist(key2, entries1) !== '') {
       const status2 = ['added'];
       return [...acc, ['+', key2, value2, pathName2, status2]];
     }
