@@ -19,7 +19,26 @@ const makeFlat = (data) => {
   }, []);
   return [...result];
 };
+const convertToStringWhenString = (value) => (typeof value === 'string' ? `'${value}'` : value);
+
 const plain = (data) => {
-  return filter(makeFlat(data));
+  const lb = '\n';
+  const result = filter(makeFlat(data));
+  return result.reduce((acc, [, , value, path, [stat, from, to]]) => {
+    const chekedValue = convertToStringWhenString(value);
+    const finalValue = Array.isArray(value) ? '[complex value]' : chekedValue;
+    if (stat === 'added') {
+      return `${acc}Property ${path} was added with value: ${finalValue}${lb}`;
+    }
+    if (stat === 'removed') {
+      return `${acc}Property ${path} was removed${lb}`;
+    }
+    if (stat === 'modified') {
+      const finalFrom = Array.isArray(from) ? '[complex value]' : convertToStringWhenString(from);
+      const finalTo = Array.isArray(to) ? '[complex value]' : convertToStringWhenString(to);
+      return `${acc}Property ${path} was updated. From ${finalFrom} to ${finalTo}${lb}`;
+    }
+    return `${acc}error! path: ${path}${lb}`;
+  }, '').slice(0, -1);
 };
 export default plain;
