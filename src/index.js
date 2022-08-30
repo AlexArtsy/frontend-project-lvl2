@@ -6,8 +6,8 @@ import formatData from '../formatters/index.js';
 
 const sortEntries = (arr) => {
   const ordered = arr.sort((item1, item2) => {
-    const [a1, b1, c1] = item1;
-    const [a2, b2, c2] = item2;
+    const [, b1] = item1;
+    const [, b2] = item2;
     if (b1 < b2) {
       return -1;
     }
@@ -54,17 +54,17 @@ const checkDiffInEntries = (entries1, entries2) => {
       }
       //  наконец-то производим сравнение
       if (value1 === value2) {
-        status1 = ['no modified'];
+        status1 = ['no modified', '', ''];
         return [...acc, [' ', key, value1, pathNameWithQuotes, status1]];
       }
       status1 = ['modified', value1, value2]; //  modified
       return [
         ...acc,
         ['-', key, value1, pathNameWithQuotes, status1],
-        ['+', key, value2, pathNameWithQuotes, ['']],
+        ['+', key, value2, pathNameWithQuotes, ['', '', '']],
       ];
     }
-    status1 = ['removed'];
+    status1 = ['removed', '', ''];
     return [...acc, ['-', key, value1, pathNameWithQuotes, status1]];
   }, []);
 
@@ -72,7 +72,7 @@ const checkDiffInEntries = (entries1, entries2) => {
     const pathNameWithQuotes = `'${pathName2}'`;
     //  !('') приводится к true поэтому добавлена вторая проверка на равенство к ''
     if (!getElemWhenExist(key2, entries1) && getElemWhenExist(key2, entries1) !== '') {
-      const status2 = ['added'];
+      const status2 = ['added', '', ''];
       return [...acc, ['+', key2, value2, pathNameWithQuotes, status2]];
     }
     return acc;

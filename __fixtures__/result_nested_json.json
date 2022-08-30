@@ -1,0 +1,344 @@
+[
+  {
+    "symbol": " ",
+    "key": "common",
+    "value": [
+      {
+        "symbol": "+",
+        "key": "follow",
+        "value": false,
+        "path": "common.follow",
+        "plainData" : {
+          "status": "added",
+          "from": "",
+          "to": ""
+        }
+      }, 
+      {
+        "symbol": " ",
+        "key": "setting1",
+        "value": "Value 1",
+        "path": "common.setting1",
+        "plainData" : {
+          "status": "no modified",
+          "from": "",
+          "to": ""
+        }
+      },
+      {
+        "symbol": "-",
+        "key": "setting2",
+        "value": 200,
+        "path": "common.setting2",
+        "plainData" : {
+          "status": "removed",
+          "from": "",
+          "to": ""
+        }
+      },
+      {
+        "symbol": "-",
+        "key": "setting3",
+        "value": true,
+        "path": "common.setting3",
+        "plainData" : {
+          "status": "modified",
+          "from": true,
+          "to": null
+        }
+      },
+      {
+        "symbol": "+",
+        "key": "setting3",
+        "value": null,
+        "path": "common.setting3",
+        "plainData" : {
+          "status": "",
+          "from": "",
+          "to": ""
+        }
+      },
+      {
+        "symbol": "+",
+        "key": "setting4",
+        "value": "blah blah",
+        "path": "common.setting4",
+        "plainData" : {
+          "status": "added",
+          "from": "",
+          "to": ""
+        }
+      },
+      {
+        "symbol": "+",
+        "key": "setting5",
+        "value": {
+          "symbol": " ",
+          "key": "key5",
+          "value": "value5",
+          "path": "common.setting5.key5",
+          "plainData" : {
+            "status": "no modified",
+            "from": "",
+            "to": ""
+          }
+        },
+        "path": "common.setting5",
+        "plainData" : {
+          "status": "added",
+          "from": "",
+          "to": ""
+        }
+      },
+      {
+        "symbol": " ",
+        "key": "setting6",
+        "value": [
+          {
+            "symbol": " ",
+            "key": "doge",
+            "value": [
+              {
+                "symbol": "-",
+                "key": "wow",
+                "value": "",
+                "path": "common.setting6.doge.wow",
+                "plainData" : {
+                  "status": "modified",
+                  "from": "so much",
+                  "to": ""
+                }
+              },
+              {
+                "symbol": "+",
+                "key": "wow",
+                "value": "so much",
+                "path": "common.setting6.doge.wow",
+                "plainData" : {
+                  "status": "",
+                  "from": "",
+                  "to": ""
+                }
+              },
+              {
+                "symbol": " ",
+                "key": "key",
+                "value": "value",
+                "path": "common.setting6.doge.key",
+                "plainData" : {
+                  "status": "no modified",
+                  "from": "",
+                  "to": ""
+                }
+              },
+              {
+                "symbol": "+",
+                "key": "ops",
+                "value": "vops",
+                "path": "common.setting6.doge.ops",
+                "plainData" : {
+                  "status": "added",
+                  "from": "",
+                  "to": ""
+                }
+              }
+            ],
+            "path": "common.setting6.doge",
+            "plainData" : {
+              "status": "",
+              "from": "",
+              "to": ""
+            }
+          }
+        ],
+        "path": "common.setting6",
+        "plainData" : {
+          "status": "",
+          "from": "",
+          "to": ""
+        }
+      }
+    ]
+  },
+  {
+    "symbol": " ",
+    "key": "group1",
+    "value": [
+      {
+        "symbol": "-",
+        "key": "baz",
+        "value": "bas",
+        "path": "group1.baz",
+        "plainData" : {
+          "status": "modified",
+          "from": "bas",
+          "to": "bars"
+        }
+      },
+      {
+        "symbol": "+",
+        "key": "baz",
+        "value": "bars",
+        "path": "group1.baz",
+        "plainData" : {
+          "status": "",
+          "from": "",
+          "to": ""
+        }
+      },
+      {
+        "symbol": " ",
+        "key": "foo",
+        "value": "bar",
+        "path": "group1.foo",
+        "plainData" : {
+          "status": "no modified",
+          "from": "",
+          "to": ""
+        }
+      },
+      {
+        "symbol": "-",
+        "key": "nest",
+        "value": [
+          {
+            "symbol": " ",
+            "key": "key",
+            "value": "value",
+            "path": "group1.nest.key",
+            "plainData" : {
+              "status": "",
+              "from": "",
+              "to": ""
+            }
+          }
+        ],
+        "path": "group1.nest",
+        "plainData" : {
+          "status": "modified",
+          "from": "[complex value]",
+          "to": "str"
+        }
+      },
+      {
+        "symbol": "+",
+        "key": "nest",
+        "value": "str",
+        "path": "group1.nest",
+        "plainData" : {
+          "status": "",
+          "from": "",
+          "to": ""
+        }
+      }
+    ],
+    "path": "group1",
+    "plainData" : {
+      "status": "",
+      "from": "",
+      "to": ""
+    }
+  },
+  {
+    "symbol": "-",
+    "key": "group2",
+    "value": [
+      {
+        "symbol": " ",
+        "key": "abc",
+        "value": 12345,
+        "path": "group2.abc",
+        "plainData" : {
+          "status": "",
+          "from": "",
+          "to": ""
+        }
+      },
+      {
+        "symbol": " ",
+        "key": "deep",
+        "value": [
+          {
+            "symbol": " ",
+            "key": "id",
+            "value": 45,
+            "path": "group2.deep.id",
+            "plainData" : {
+              "status": "",
+              "from": "",
+              "to": ""
+            }
+          }
+        ],
+        "path": "group2.deep",
+        "plainData" : {
+          "status": "",
+          "from": "",
+          "to": ""
+        }
+      }
+    ],
+    "path": "group2",
+    "plainData" : {
+      "status": "removed",
+      "from": "",
+      "to": ""
+    }
+  },
+  {
+    "symbol": "+",
+    "key": "group3",
+    "value": [
+      {
+        "symbol": " ",
+        "key": "deep",
+        "value":
+          {
+            "symbol": " ",
+            "key": "id",
+            "value":
+              {
+                "symbol": " ",
+                "key": "number",
+                "value": 45,
+                "path": "group3.deep.id.number",
+                "plainData" : {
+                  "status": "",
+                  "from": "",
+                  "to": ""
+                }
+              },
+            "path": "group3.deep.id",
+            "plainData" : {
+              "status": "",
+              "from": "",
+              "to": ""
+            }
+          },
+        "path": "group3.deep",
+          "plainData" : {
+            "status": "",
+            "from": "",
+            "to": ""
+          }
+      },
+      {
+        "symbol": " ",
+        "key": "fee",
+        "value": 100500,
+        "path": "group3.fee",
+        "plainData" : {
+          "status": "",
+          "from": "",
+          "to": ""
+        }
+      }
+    ],
+    "path": "group3",
+    "plainData" : {
+      "status": "added",
+      "from": "",
+      "to": ""
+    }
+  }
+]
