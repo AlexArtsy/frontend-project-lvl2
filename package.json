@@ -2,7 +2,7 @@
   "name": "@hexlet/code",
   "version": "1.0.0",
   "description": "educational project from hexlet.io level 2",
-  "main": "index.js",
+  "main": "./src/index.js",
   "scripts": {
     "test": "NODE_OPTIONS=--experimental-vm-modules npx jest --no-warnings"
   },
