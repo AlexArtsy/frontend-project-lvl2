@@ -5,13 +5,11 @@ import parse from './parsers.js';
 import formatData from '../formatters/index.js';
 
 const sortEntries = (arr) => {
-  const ordered = arr.sort((item1, item2) => {
-    const [, b1] = item1;
-    const [, b2] = item2;
-    if (b1 < b2) {
+  const ordered = arr.sort(([a1], [a2]) => {
+    if (a1 < a2) {
       return -1;
     }
-    if (b1 > b2) {
+    if (a1 > a2) {
       return 1;
     }
     return 0;
@@ -30,7 +28,7 @@ const isYaml = (filePath) => {
 const isJSON = (filePath) => path.extname(filePath) === '.json';
 
 const getElemWhenExist = (elem, source) => {
-  const result = source.reduce((acc, [, key, value, ,]) => {
+  const result = source.reduce((acc, [key, value, ,]) => {
     if (acc !== false) {
       return acc;
     }
@@ -45,7 +43,7 @@ const checkDiffInEntries = (entries1, entries2) => {
     const value2 = getElemWhenExist(key, entries2);
     //  проверяем, существует ли элемент в второй коллекции
     if (value2 || value2 === null) { // null преобразовывался в false
-      //  проверяем, объекты ли элемента из обеих коллекций
+      //  проверяем, объекты ли элементы из обеих коллекций
       if (_.isObject(value1) && _.isObject(value2)) {
         const newValue = checkDiffInEntries(value1, value2);
         return [...acc, [key, newValue, pathNameWithQuotes, ['complex modified', value1, value2]]];
@@ -85,9 +83,9 @@ const transformObjToArray = (tree, prop = '') => {
   const result = Object.entries(tree).map(([key, value]) => {
     const pathName = (prop === '') ? `${key}` : `${prop}.${key}`;
     if (_.isObject(value)) {
-      return [key, transformObjToArray(value, pathName), pathName];
+      return [key, transformObjToArray(value, pathName), pathName, ['no init', '', '']];
     }
-    return [key, value, pathName];
+    return [key, value, pathName, ['no init', '', '']];
   });
 
   return result;

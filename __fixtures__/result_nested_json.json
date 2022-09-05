@@ -1,6 +1,5 @@
 [
   {
-    "symbol": " ",
     "key": "common",
     "value": [
       {
@@ -15,7 +14,6 @@
         }
       }, 
       {
-        "symbol": " ",
         "key": "setting1",
         "value": "Value 1",
         "path": "common.setting1",
@@ -26,7 +24,6 @@
         }
       },
       {
-        "symbol": "-",
         "key": "setting2",
         "value": 200,
         "path": "common.setting2",
@@ -37,7 +34,6 @@
         }
       },
       {
-        "symbol": "-",
         "key": "setting3",
         "value": true,
         "path": "common.setting3",
@@ -48,7 +44,6 @@
         }
       },
       {
-        "symbol": "+",
         "key": "setting3",
         "value": null,
         "path": "common.setting3",
@@ -59,7 +54,6 @@
         }
       },
       {
-        "symbol": "+",
         "key": "setting4",
         "value": "blah blah",
         "path": "common.setting4",
@@ -70,7 +64,6 @@
         }
       },
       {
-        "symbol": "+",
         "key": "setting5",
         "value": {
           "symbol": " ",
@@ -91,7 +84,6 @@
         }
       },
       {
-        "symbol": " ",
         "key": "setting6",
         "value": [
           {
@@ -99,7 +91,6 @@
             "key": "doge",
             "value": [
               {
-                "symbol": "-",
                 "key": "wow",
                 "value": "",
                 "path": "common.setting6.doge.wow",
@@ -110,7 +101,6 @@
                 }
               },
               {
-                "symbol": "+",
                 "key": "wow",
                 "value": "so much",
                 "path": "common.setting6.doge.wow",
@@ -121,7 +111,6 @@
                 }
               },
               {
-                "symbol": " ",
                 "key": "key",
                 "value": "value",
                 "path": "common.setting6.doge.key",
@@ -132,7 +121,6 @@
                 }
               },
               {
-                "symbol": "+",
                 "key": "ops",
                 "value": "vops",
                 "path": "common.setting6.doge.ops",
@@ -161,11 +149,9 @@
     ]
   },
   {
-    "symbol": " ",
     "key": "group1",
     "value": [
       {
-        "symbol": "-",
         "key": "baz",
         "value": "bas",
         "path": "group1.baz",
@@ -176,7 +162,6 @@
         }
       },
       {
-        "symbol": "+",
         "key": "baz",
         "value": "bars",
         "path": "group1.baz",
@@ -187,7 +172,6 @@
         }
       },
       {
-        "symbol": " ",
         "key": "foo",
         "value": "bar",
         "path": "group1.foo",
@@ -198,11 +182,10 @@
         }
       },
       {
-        "symbol": "-",
         "key": "nest",
         "value": [
           {
-            "symbol": " ",
+
             "key": "key",
             "value": "value",
             "path": "group1.nest.key",
@@ -221,7 +204,6 @@
         }
       },
       {
-        "symbol": "+",
         "key": "nest",
         "value": "str",
         "path": "group1.nest",
@@ -240,11 +222,9 @@
     }
   },
   {
-    "symbol": "-",
     "key": "group2",
     "value": [
       {
-        "symbol": " ",
         "key": "abc",
         "value": 12345,
         "path": "group2.abc",
@@ -255,11 +235,9 @@
         }
       },
       {
-        "symbol": " ",
         "key": "deep",
         "value": [
           {
-            "symbol": " ",
             "key": "id",
             "value": 45,
             "path": "group2.deep.id",
@@ -286,19 +264,15 @@
     }
   },
   {
-    "symbol": "+",
     "key": "group3",
     "value": [
       {
-        "symbol": " ",
         "key": "deep",
         "value":
           {
-            "symbol": " ",
             "key": "id",
             "value":
               {
-                "symbol": " ",
                 "key": "number",
                 "value": 45,
                 "path": "group3.deep.id.number",
@@ -323,7 +297,6 @@
           }
       },
       {
-        "symbol": " ",
         "key": "fee",
         "value": 100500,
         "path": "group3.fee",
