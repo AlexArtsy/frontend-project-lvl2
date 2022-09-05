@@ -21,16 +21,15 @@ const makeFlat = (data) => {
 const convertToStringWhenString = (value) => (typeof value === 'string' ? `'${value}'` : value);
 
 const getResultString = (value, path, [stat, from, to]) => {
-  const finalValue = convertToStringWhenString(value);
-  const finalFrom = convertToStringWhenString(from);
-  const finalTo = convertToStringWhenString(to);
+  const finalFrom = Array.isArray(from) ? '[complex value]' : convertToStringWhenString(from);
+  const finalTo = Array.isArray(to) ? '[complex value]' : convertToStringWhenString(to);
 
   switch (stat) {
     case 'modified':
       return `Property ${path} was updated. From ${finalFrom} to ${finalTo}${lb}`;
 
     case 'added':
-      return `Property ${path} was added with value: ${finalValue}${lb}`;
+      return `Property ${path} was added with value: ${value}${lb}`;
 
     case 'removed':
       return `Property ${path} was removed${lb}`;
