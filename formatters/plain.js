@@ -45,6 +45,6 @@ const plain = (data) => {
     const chekedValue = convertToStringWhenString(value);
     const finalValue = Array.isArray(value) ? '[complex value]' : chekedValue;
     return [...acc, getResultString(finalValue, path, [stat, from, to])];
-  }, []).join('');
+  }, []).join('').slice(0, -1);
 };
 export default plain;

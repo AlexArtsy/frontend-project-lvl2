@@ -40,6 +40,6 @@ const style = (arr, spaceCount = 0) => {
 };
 const stylish = (data) => {
   const result = style(data);
-  return `${result}\n`;
+  return result;
 };
 export default stylish;
