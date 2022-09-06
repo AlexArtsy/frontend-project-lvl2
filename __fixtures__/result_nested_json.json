@@ -3,21 +3,20 @@
     "key": "common",
     "value": [
       {
-        "symbol": "+",
         "key": "follow",
         "value": false,
         "path": "common.follow",
-        "plainData" : {
+        "plainData": {
           "status": "added",
           "from": "",
           "to": ""
         }
-      }, 
+      },
       {
         "key": "setting1",
         "value": "Value 1",
         "path": "common.setting1",
-        "plainData" : {
+        "plainData": {
           "status": "no modified",
           "from": "",
           "to": ""
@@ -27,7 +26,7 @@
         "key": "setting2",
         "value": 200,
         "path": "common.setting2",
-        "plainData" : {
+        "plainData": {
           "status": "removed",
           "from": "",
           "to": ""
@@ -37,27 +36,17 @@
         "key": "setting3",
         "value": true,
         "path": "common.setting3",
-        "plainData" : {
+        "plainData": {
           "status": "modified",
           "from": true,
-          "to": null
-        }
-      },
-      {
-        "key": "setting3",
-        "value": null,
-        "path": "common.setting3",
-        "plainData" : {
-          "status": "",
-          "from": "",
-          "to": ""
+          "to": "[complex value]"
         }
       },
       {
         "key": "setting4",
         "value": "blah blah",
         "path": "common.setting4",
-        "plainData" : {
+        "plainData": {
           "status": "added",
           "from": "",
           "to": ""
@@ -65,19 +54,20 @@
       },
       {
         "key": "setting5",
-        "value": {
-          "symbol": " ",
-          "key": "key5",
-          "value": "value5",
-          "path": "common.setting5.key5",
-          "plainData" : {
-            "status": "no modified",
-            "from": "",
-            "to": ""
+        "value": [
+          {
+            "key": "key5",
+            "value": "value5",
+            "path": "common.setting5.key5",
+            "plainData": {
+              "status": "no init",
+              "from": "",
+              "to": ""
+            }
           }
-        },
+        ],
         "path": "common.setting5",
-        "plainData" : {
+        "plainData": {
           "status": "added",
           "from": "",
           "to": ""
@@ -87,66 +77,61 @@
         "key": "setting6",
         "value": [
           {
-            "symbol": " ",
             "key": "doge",
             "value": [
               {
                 "key": "wow",
-                "value": "",
+                "value": "too much",
                 "path": "common.setting6.doge.wow",
-                "plainData" : {
+                "plainData": {
                   "status": "modified",
-                  "from": "so much",
-                  "to": ""
-                }
-              },
-              {
-                "key": "wow",
-                "value": "so much",
-                "path": "common.setting6.doge.wow",
-                "plainData" : {
-                  "status": "",
-                  "from": "",
-                  "to": ""
-                }
-              },
-              {
-                "key": "key",
-                "value": "value",
-                "path": "common.setting6.doge.key",
-                "plainData" : {
-                  "status": "no modified",
-                  "from": "",
-                  "to": ""
-                }
-              },
-              {
-                "key": "ops",
-                "value": "vops",
-                "path": "common.setting6.doge.ops",
-                "plainData" : {
-                  "status": "added",
-                  "from": "",
-                  "to": ""
+                  "from": "too much",
+                  "to": "so much"
                 }
               }
             ],
             "path": "common.setting6.doge",
-            "plainData" : {
-              "status": "",
+            "plainData": {
+              "status": "complex modified",
+              "from": "[complex value]",
+              "to": "[complex value]"
+            }
+          },
+          {
+            "key": "key",
+            "value": "value",
+            "path": "common.setting6.key",
+            "plainData": {
+              "status": "no modified",
+              "from": "",
+              "to": ""
+            }
+          },
+          {
+            "key": "ops",
+            "value": "vops",
+            "path": "common.setting6.ops",
+            "plainData": {
+              "status": "added",
               "from": "",
               "to": ""
             }
           }
         ],
         "path": "common.setting6",
-        "plainData" : {
-          "status": "",
-          "from": "",
-          "to": ""
+        "plainData": {
+          "status": "complex modified",
+          "from": "[complex value]",
+          "to": "[complex value]"
         }
       }
-    ]
+    ],
+    "path": "common",
+    "plainData": {
+      "status": "complex modified",
+      "from": "[complex value]",
+      "to": "[complex value]"
+    }
   },
   {
     "key": "group1",
@@ -155,27 +140,17 @@
         "key": "baz",
         "value": "bas",
         "path": "group1.baz",
-        "plainData" : {
+        "plainData": {
           "status": "modified",
           "from": "bas",
           "to": "bars"
         }
       },
       {
-        "key": "baz",
-        "value": "bars",
-        "path": "group1.baz",
-        "plainData" : {
-          "status": "",
-          "from": "",
-          "to": ""
-        }
-      },
-      {
         "key": "foo",
         "value": "bar",
         "path": "group1.foo",
-        "plainData" : {
+        "plainData": {
           "status": "no modified",
           "from": "",
           "to": ""
@@ -185,40 +160,29 @@
         "key": "nest",
         "value": [
           {
-
             "key": "key",
             "value": "value",
             "path": "group1.nest.key",
-            "plainData" : {
-              "status": "",
+            "plainData": {
+              "status": "no init",
               "from": "",
               "to": ""
             }
           }
         ],
         "path": "group1.nest",
-        "plainData" : {
+        "plainData": {
           "status": "modified",
           "from": "[complex value]",
           "to": "str"
         }
-      },
-      {
-        "key": "nest",
-        "value": "str",
-        "path": "group1.nest",
-        "plainData" : {
-          "status": "",
-          "from": "",
-          "to": ""
-        }
       }
     ],
     "path": "group1",
-    "plainData" : {
-      "status": "",
-      "from": "",
-      "to": ""
+    "plainData": {
+      "status": "complex modified",
+      "from": "[complex value]",
+      "to": "[complex value]"
     }
   },
   {
@@ -228,8 +192,8 @@
         "key": "abc",
         "value": 12345,
         "path": "group2.abc",
-        "plainData" : {
-          "status": "",
+        "plainData": {
+          "status": "no init",
           "from": "",
           "to": ""
         }
@@ -241,23 +205,23 @@
             "key": "id",
             "value": 45,
             "path": "group2.deep.id",
-            "plainData" : {
-              "status": "",
+            "plainData": {
+              "status": "no init",
               "from": "",
               "to": ""
             }
           }
         ],
         "path": "group2.deep",
-        "plainData" : {
-          "status": "",
+        "plainData": {
+          "status": "no init",
           "from": "",
           "to": ""
         }
       }
     ],
     "path": "group2",
-    "plainData" : {
+    "plainData": {
       "status": "removed",
       "from": "",
       "to": ""
@@ -268,48 +232,162 @@
     "value": [
       {
         "key": "deep",
-        "value":
+        "value": [
           {
             "key": "id",
-            "value":
+            "value": [
               {
                 "key": "number",
                 "value": 45,
                 "path": "group3.deep.id.number",
-                "plainData" : {
-                  "status": "",
+                "plainData": {
+                  "status": "no init",
                   "from": "",
                   "to": ""
                 }
-              },
+              }
+            ],
             "path": "group3.deep.id",
-            "plainData" : {
-              "status": "",
+            "plainData": {
+              "status": "no init",
               "from": "",
               "to": ""
             }
-          },
-        "path": "group3.deep",
-          "plainData" : {
-            "status": "",
-            "from": "",
-            "to": ""
           }
+        ],
+        "path": "group3.deep",
+        "plainData": {
+          "status": "no init",
+          "from": "",
+          "to": ""
+        }
       },
       {
         "key": "fee",
         "value": 100500,
         "path": "group3.fee",
-        "plainData" : {
-          "status": "",
+        "plainData": {
+          "status": "no init",
           "from": "",
           "to": ""
         }
       }
     ],
     "path": "group3",
-    "plainData" : {
+    "plainData": {
       "status": "added",
+      "from": "",
+      "to": ""
+    }
+  },
+  {
+    "key": "group4",
+    "value": [
+      {
+        "key": "default",
+        "value": null,
+        "path": "group4.default",
+        "plainData": {
+          "status": "modified",
+          "from": null,
+          "to": ""
+        }
+      },
+      {
+        "key": "foo",
+        "value": 0,
+        "path": "group4.foo",
+        "plainData": {
+          "status": "modified",
+          "from": 0,
+          "to": null
+        }
+      },
+      {
+        "key": "isNested",
+        "value": false,
+        "path": "group4.isNested",
+        "plainData": {
+          "status": "modified",
+          "from": false,
+          "to": "none"
+        }
+      },
+      {
+        "key": "key",
+        "value": false,
+        "path": "group4.key",
+        "plainData": {
+          "status": "added",
+          "from": "",
+          "to": ""
+        }
+      },
+      {
+        "key": "nest",
+        "value": [
+          {
+            "key": "bar",
+            "value": "",
+            "path": "group4.nest.bar",
+            "plainData": {
+              "status": "modified",
+              "from": "",
+              "to": 0
+            }
+          },
+          {
+            "key": "isNested",
+            "value": true,
+            "path": "group4.nest.isNested",
+            "plainData": {
+              "status": "removed",
+              "from": "",
+              "to": ""
+            }
+          }
+        ],
+        "path": "group4.nest",
+        "plainData": {
+          "status": "complex modified",
+          "from": "[complex value]",
+          "to": "[complex value]"
+        }
+      },
+      {
+        "key": "someKey",
+        "value": true,
+        "path": "group4.someKey",
+        "plainData": {
+          "status": "added",
+          "from": "",
+          "to": ""
+        }
+      },
+      {
+        "key": "type",
+        "value": "bas",
+        "path": "group4.type",
+        "plainData": {
+          "status": "modified",
+          "from": "bas",
+          "to": "bar"
+        }
+      }
+    ],
+    "path": "group4",
+    "plainData": {
+      "status": "complex modified",
+      "from": "[complex value]",
+      "to": "[complex value]"
+    }
+  },
+  {
+    "key": "language",
+    "value": "js",
+    "path": "language",
+    "plainData": {
+      "status": "no modified",
       "from": "",
       "to": ""
     }
