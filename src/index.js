@@ -49,28 +49,26 @@ const isExistInCollection = (elem, source) => {
 
 const checkDiffInEntries = (entries1, entries2) => {
   const file1CommonEntries = entries1.reduce((acc, [key, value1, pathName1]) => {
-    const pathNameWithQuotes = `'${pathName1}'`;
     const value2 = getElemWhenExist(key, entries2);
     //  проверяем, существует ли элемент в второй коллекции
     if (isExistInCollection(key, entries2)) {
       //  проверяем, объекты ли элементы из обеих коллекций
       if (_.isObject(value1) && _.isObject(value2)) {
         const newValue = checkDiffInEntries(value1, value2);
-        return [...acc, [key, newValue, pathNameWithQuotes, ['complex modified', value1, value2]]];
+        return [...acc, [key, newValue, pathName1, ['complex modified', value1, value2]]];
       }
       //  наконец-то производим сравнение
       if (value1 === value2) {
-        return [...acc, [key, value1, pathNameWithQuotes, ['no modified', '', '']]];
+        return [...acc, [key, value1, pathName1, ['no modified', '', '']]];
       }
-      return [...acc, [key, value1, pathNameWithQuotes, ['modified', value1, value2]]];
+      return [...acc, [key, value1, pathName1, ['modified', value1, value2]]];
     }
-    return [...acc, [key, value1, pathNameWithQuotes, ['removed', '', '']]];
+    return [...acc, [key, value1, pathName1, ['removed', '', '']]];
   }, []);
 
   const file2CommonEntries = entries2.reduce((acc, [key2, value2, pathName2]) => {
-    const pathNameWithQuotes = `'${pathName2}'`;
     if (!isExistInCollection(key2, entries1)) {
-      return [...acc, [key2, value2, pathNameWithQuotes, ['added', '', '']]];
+      return [...acc, [key2, value2, pathName2, ['added', '', '']]];
     }
     return acc;
   }, file1CommonEntries);

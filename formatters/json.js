@@ -3,15 +3,17 @@ const tb = '  '; // tab symbol
 
 const getTab = (count) => tb.repeat(count);
 
+const convertToStringWhenString = (value) => (typeof value === 'string' ? `"${value}"` : value);
+
 const convertToJson = (key, value, pathName, plainData, spaceCount) => {
   const tab = getTab(spaceCount);
   const [stat, from, to] = plainData;
-  const finalFrom = Array.isArray(from) ? '[complex value]' : from;
-  const finalTo = Array.isArray(to) ? '[complex value]' : to;
-  const k = `${tab}"key": ${key},${lb}`;
-  const v = `${tab}"value": ${value},${lb}`;
-  const pth = `${tab}"path": ${pathName},${lb}`;
-  const st = `${getTab(spaceCount + 1)}"status": ${stat},${lb}`;
+  const finalFrom = Array.isArray(from) ? '[complex value]' : convertToStringWhenString(from);
+  const finalTo = Array.isArray(to) ? '[complex value]' : convertToStringWhenString(to);
+  const k = `${tab}"key": ${convertToStringWhenString(key)},${lb}`;
+  const v = `${tab}"value": ${convertToStringWhenString(value)},${lb}`;
+  const pth = `${tab}"path": ${convertToStringWhenString(pathName)},${lb}`;
+  const st = `${getTab(spaceCount + 1)}"status": ${convertToStringWhenString(stat)},${lb}`;
   const fr = `${getTab(spaceCount + 1)}"from": ${finalFrom},${lb}`;
   const t = `${getTab(spaceCount + 1)}"to": ${finalTo}${lb}`;
   const plD = `${tab}"plainData": {${lb}${st}${fr}${t}${tab}}${lb}`;

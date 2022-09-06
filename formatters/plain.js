@@ -26,13 +26,13 @@ const getResultString = (value, path, [stat, from, to]) => {
 
   switch (stat) {
     case 'modified':
-      return `Property ${path} was updated. From ${finalFrom} to ${finalTo}${lb}`;
+      return `Property ${convertToStringWhenString(path)} was updated. From ${finalFrom} to ${finalTo}${lb}`;
 
     case 'added':
-      return `Property ${path} was added with value: ${value}${lb}`;
+      return `Property ${convertToStringWhenString(path)} was added with value: ${value}${lb}`;
 
     case 'removed':
-      return `Property ${path} was removed${lb}`;
+      return `Property ${convertToStringWhenString(path)} was removed${lb}`;
 
     default:
       return '';
