@@ -4,18 +4,7 @@ import path from 'path';
 import parse from './parsers.js';
 import formatData from '../formatters/index.js';
 
-const sortEntries = (arr) => {
-  const ordered = arr.sort(([a1], [a2]) => {
-    if (a1 < a2) {
-      return -1;
-    }
-    if (a1 > a2) {
-      return 1;
-    }
-    return 0;
-  });
-  return ordered;
-};
+const sortEntries = (arr) => _.sortBy(arr, ([key]) => key);
 
 const isYaml = (filePath) => {
   const ext = path.extname(filePath);
