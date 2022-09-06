@@ -5,9 +5,6 @@ const getTab = (count) => tb.repeat(count);
 
 const getResultString = (key, value, [stat, from, to], tabcount) => {
   const sp = getTab(tabcount);
-  //const newFrom = Array.isArray(from) ? stylish(from, tabcount + 1) : from;
-  //const newTo = Array.isArray(to) ? stylish(to, tabcount + 1) : to;
-
   switch (stat) {
     case 'modified':
       return `${sp}- ${key}: ${from}${lb}${sp}+ ${key}: ${to}${lb}`;
@@ -27,18 +24,22 @@ const getResultString = (key, value, [stat, from, to], tabcount) => {
       return 'error';
   }
 };
-const stylish = (arr, spaceCount = 0) => {
+const style = (arr, spaceCount = 0) => {
   const tab = getTab(spaceCount);
   const result = arr.map(([key, value, , [stat, from, to]]) => {
-    const newFrom = Array.isArray(from) ? stylish(from, spaceCount + 2) : from;
-    const newTo = Array.isArray(to) ? stylish(to, spaceCount + 2) : to;
+    const newFrom = Array.isArray(from) ? style(from, spaceCount + 2) : from;
+    const newTo = Array.isArray(to) ? style(to, spaceCount + 2) : to;
 
     if (Array.isArray(value)) {
-      const newValue = stylish(value, spaceCount + 2);
+      const newValue = style(value, spaceCount + 2);
       return getResultString(key, newValue, [stat, newFrom, newTo], spaceCount + 1);
     }
     return getResultString(key, value, [stat, newFrom, newTo], spaceCount + 1);
   });
   return `{${lb}${result.join('')}${tab}}`;
+};
+const stylish = (data) => {
+  const result = style(data);
+  return `${result}\n`;
 };
 export default stylish;

@@ -58,3 +58,31 @@ test('test genDiff flat .yml struct in plain formatt', () => {
   const result = readFile('result_flat_plain');
   expect(result).toEqual(genDiff(path1, path2, 'plain'));
 });
+
+test('test hexlet plain .json', () => {
+  const path1 = getPath('hexlet1.json');
+  const path2 = getPath('hexlet2.json');
+  const result = readFile('result_plain.txt');
+  expect(result).toEqual(genDiff(path1, path2, 'plain'));
+});
+
+test('test hexlet stylish .json', () => {
+  const path1 = getPath('hexlet1.json');
+  const path2 = getPath('hexlet2.json');
+  const result = readFile('result_stylish.txt');
+  expect(result).toEqual(genDiff(path1, path2));
+});
+
+test('test hexlet plain .yml', () => {
+  const path1 = getPath('hexlet1.yml');
+  const path2 = getPath('hexlet2.yml');
+  const result = readFile('result_plain.txt');
+  expect(result).toEqual(genDiff(path1, path2, 'plain'));
+});
+
+test('test hexlet stylish .yml', () => {
+  const path1 = getPath('hexlet1.yml');
+  const path2 = getPath('hexlet2.yml');
+  const result = readFile('result_stylish.txt');
+  expect(result).toEqual(genDiff(path1, path2));
+});

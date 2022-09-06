@@ -37,12 +37,22 @@ const getElemWhenExist = (elem, source) => {
   return result;
 };
 
+const isExistInCollection = (elem, source) => {
+  const result = source.reduce((acc, [key]) => {
+    if (acc !== false) {
+      return acc;
+    }
+    return elem === key;
+  }, false);
+  return result;
+};
+
 const checkDiffInEntries = (entries1, entries2) => {
   const file1CommonEntries = entries1.reduce((acc, [key, value1, pathName1]) => {
     const pathNameWithQuotes = `'${pathName1}'`;
     const value2 = getElemWhenExist(key, entries2);
     //  проверяем, существует ли элемент в второй коллекции
-    if (value2 || value2 === null) { // null преобразовывался в false
+    if (isExistInCollection(key, entries2)) {
       //  проверяем, объекты ли элементы из обеих коллекций
       if (_.isObject(value1) && _.isObject(value2)) {
         const newValue = checkDiffInEntries(value1, value2);
@@ -59,8 +69,7 @@ const checkDiffInEntries = (entries1, entries2) => {
 
   const file2CommonEntries = entries2.reduce((acc, [key2, value2, pathName2]) => {
     const pathNameWithQuotes = `'${pathName2}'`;
-    //  !('') приводится к true поэтому добавлена вторая проверка на равенство к ''
-    if (!getElemWhenExist(key2, entries1) && getElemWhenExist(key2, entries1) !== '') {
+    if (!isExistInCollection(key2, entries1)) {
       return [...acc, [key2, value2, pathNameWithQuotes, ['added', '', '']]];
     }
     return acc;
