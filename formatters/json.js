@@ -8,8 +8,8 @@ const convertToStringWhenString = (value) => (typeof value === 'string' ? `"${va
 const convertToJson = (key, value, pathName, plainData, spaceCount) => {
   const tab = getTab(spaceCount);
   const [stat, from, to] = plainData;
-  const finalFrom = Array.isArray(from) ? '[complex value]' : convertToStringWhenString(from);
-  const finalTo = Array.isArray(to) ? '[complex value]' : convertToStringWhenString(to);
+  const finalFrom = Array.isArray(from) ? '"[complex value]"' : convertToStringWhenString(from);
+  const finalTo = Array.isArray(to) ? '"[complex value]"' : convertToStringWhenString(to);
   const k = `${tab}"key": ${convertToStringWhenString(key)},${lb}`;
   const v = `${tab}"value": ${convertToStringWhenString(value)},${lb}`;
   const pth = `${tab}"path": ${convertToStringWhenString(pathName)},${lb}`;
