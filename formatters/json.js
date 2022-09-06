@@ -20,15 +20,15 @@ const convertToJson = (key, value, pathName, plainData, spaceCount) => {
   return `${k}${v}${pth}${plD}`;
 };
 
-const json = (data, spaceCount = 1) => {
-  const tab = getTab(spaceCount);
+const json = (data, sp = 1) => {
+  const tab = getTab(sp);
   const result = data.reduce((acc, [key, value, pathName, plainData]) => {
-    const newValue = Array.isArray(value) ? json(value, spaceCount + 2) : convertToStringWhenString(value);
-    const node = `${lb}${tab}{${lb}${convertToJson(key, newValue, pathName, plainData, spaceCount + 1)}${tab}},`;
+    const newValue = Array.isArray(value) ? json(value, sp + 2) : convertToStringWhenString(value);
+    const node = `${lb}${tab}{${lb}${convertToJson(key, newValue, pathName, plainData, sp + 1)}${tab}},`;
     return [...acc, node];
   }, '').join('').slice(0, -1);
 
-  return `[${result}${lb}${getTab(spaceCount - 1)}]`;
+  return `[${result}${lb}${getTab(sp - 1)}]`;
 };
 
 export default json;

@@ -77,14 +77,13 @@ const checkDiffInEntries = (entries1, entries2) => {
 
 const getObjectFromPath = (filePath) => {
   const file = fs.readFileSync(path.resolve(process.cwd(), filePath), 'utf-8');
-  let result;
   if (isYaml(filePath)) {
-    result = parse(file, 'yaml');
+    return parse(file, 'yaml');
   }
   if (isJSON(filePath)) {
-    result = parse(file, 'json');
+    return parse(file, 'json');
   }
-  return result;
+  return 'error';
 };
 const transformObjToArray = (tree, prop = '') => {
   const result = Object.entries(tree).map(([key, value]) => {
